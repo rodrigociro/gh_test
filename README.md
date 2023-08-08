@@ -1,5 +1,5 @@
 # this repo will use an github action
-
+## Create project
 local actions:
 
 1) create your project
@@ -66,3 +66,31 @@ module.exports = {
 6) test your app: npx eslint src/
 
 7) push your project to github
+
+##Create your .yaml for first action
+1) create .github/workflows/NAME.yml with the next content:
+
+
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16.x
+    - run: npm install    
+    - run: npm ci
+    - run: npm run build
+    - run: npm run
